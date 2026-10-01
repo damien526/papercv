@@ -19,7 +19,7 @@ Créé le 01/10/2026. 6e webtool du portefeuille (waveform, finance-sim, kiturge
 4. **Cross-links**: ajouter PaperCV aux footers de undercap/graphmint/waveform
 5. **Analytics**: activer Vercel Analytics (regarder les referrers avant toute conclusion, cf. leçon simulateur-epargne)
 6. Monétisation plus tard (modèle annoncé sur la landing: extras optionnels, jamais de paywall au download). Pistes: templates premium, cover letters, réécriture IA des bullets
-7. Idées produit v2: multi-CV, import PDF/LinkedIn, cover letter builder, pages SEO par métier ("software engineer resume template" etc. avec exemples pré-remplis chargés dans le builder via query param)
+7. Idées produit v2: multi-CV, import PDF/LinkedIn, cover letter builder, pages SEO par métier ("software engineer resume template" etc.). Le mécanisme de handoff existe déjà: `/builder?example=1` charge l'exemple, `/builder?name=X` pré-remplit le nom (hero de la landing: champ nom optionnel dans le CTA, maquette cliquable). Les deux ne s'appliquent QUE si aucun brouillon n'existe en localStorage; le param est retiré de l'URL après lecture. Pour les pages métier, étendre ce pattern (ex. `?example=software-engineer`).
 
 ## Pièges connus
 
