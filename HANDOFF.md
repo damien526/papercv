@@ -21,6 +21,15 @@ Créé le 01/10/2026. 6e webtool du portefeuille (waveform, finance-sim, kiturge
 6. Monétisation plus tard (modèle annoncé sur la landing: extras optionnels, jamais de paywall au download). Pistes: templates premium, cover letters, réécriture IA des bullets
 7. Idées produit v2: multi-CV, import PDF/LinkedIn, cover letter builder, pages SEO par métier ("software engineer resume template" etc.). Le mécanisme de handoff existe déjà: `/builder?example=1` charge l'exemple, `/builder?name=X` pré-remplit le nom (hero de la landing: champ nom optionnel dans le CTA, maquette cliquable). Les deux ne s'appliquent QUE si aucun brouillon n'existe en localStorage; le param est retiré de l'URL après lecture. Pour les pages métier, étendre ce pattern (ex. `?example=software-engineer`).
 
+## Sécurité / conformité (passe du 01/10/2026)
+
+- Headers via vercel.json: CSP stricte (self-only, pas de tiers), nosniff, X-Frame-Options DENY + frame-ancestors none, Referrer-Policy, Permissions-Policy, COOP. ⚠️ La CSP DOIT contenir `'wasm-unsafe-eval'` dans script-src (pdf.js utilise WebAssembly; sans ça le download PDF casse silencieusement). Testé e2e en prod: zéro violation console, download OK.
+- /privacy complétée: éditeur (Damien Yvert), contact damienyvert.dev@gmail.com, hébergeur Vercel Inc. + logs, zéro cookie (localStorage strictement nécessaire = pas de bandeau consentement), droits RGPD, date de mise à jour.
+- /terms créée (as-is, contenu à l'utilisateur, pas de garantie d'embauche, usage acceptable, responsabilité).
+- /.well-known/security.txt (Expires 2027-10-01: à renouveler avant cette date).
+- Footer: liens Terms + Contact (mailto), mention « Published by Damien Yvert ».
+- Si des analytics sont ajoutées un jour: mettre à jour /privacy D'ABORD (elle promet « none active » + cookieless/aggregate), et élargir connect-src de la CSP si besoin.
+
 ## Pièges connus
 
 - Vercel: ne JAMAIS `vercel project add`; laisser `vercel deploy --prod` créer le projet; `vercel.json` a `outputDirectory: "out"`
