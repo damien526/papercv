@@ -1,26 +1,64 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-instrument-serif), ui-serif, Georgia, serif;
+
+  /* desk / dark builder */
+  --color-ink-950: #0a0b0e;
+  --color-ink-900: #101217;
+  --color-ink-850: #14161c;
+  --color-ink-800: #181b22;
+  --color-ink-700: #20242e;
+  --color-ink-600: #2b303d;
+  --color-ink-500: #3d4352;
+  --color-ink-400: #6c7183;
+  --color-ink-300: #9b9fae;
+  --color-ink-200: #c6c8d1;
+  --color-ink-100: #e9e9ec;
+
+  /* paper / light landing */
+  --color-paper-50: #fbfaf6;
+  --color-paper-100: #f5f3ea;
+  --color-paper-200: #ebe7d8;
+  --color-paper-300: #d8d2bc;
+
+  /* brand */
+  --color-brand-300: #a5b3ff;
+  --color-brand-400: #7389ff;
+  --color-brand-500: #4360f5;
+  --color-brand-600: #3049d6;
+  --color-brand-700: #2538ab;
+
+  --color-mark-400: #ffb15c;
+
+  --shadow-paper: 0 1px 2px rgba(20, 18, 10, 0.1), 0 16px 48px -12px rgba(20, 18, 10, 0.25);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #4360f5;
+  color: #fff;
+}
+
+/* thin scrollbars in the builder panels */
+.panel-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #2b303d transparent;
+}
+.panel-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.panel-scroll::-webkit-scrollbar-thumb {
+  background: #2b303d;
+  border-radius: 4px;
 }
