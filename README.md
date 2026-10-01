@@ -2,7 +2,7 @@
 
 Free resume builder that runs entirely in the browser. No account, no watermark, no paywall at the download button; the resume never leaves the device.
 
-Live: https://papercv.vercel.app
+Live: https://paper-cv.vercel.app
 
 ## How it works
 

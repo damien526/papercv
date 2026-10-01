@@ -1,6 +1,6 @@
 // Pings IndexNow with every public URL. Run MANUALLY after a deploy that
 // changes content: npm run indexnow
-const HOST = "papercv.vercel.app";
+const HOST = "paper-cv.vercel.app";
 const KEY = "cc7ab363c4a80c76f663895194866fe8";
 
 const urls = [

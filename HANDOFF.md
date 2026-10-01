@@ -13,7 +13,7 @@ Créé le 01/10/2026. 6e webtool du portefeuille (waveform, finance-sim, kiturge
 
 ## TODOs (dans l'ordre)
 
-1. **Search Console + Bing Webmaster**: inscrire papercv.vercel.app, soumettre le sitemap
+1. **Search Console + Bing Webmaster**: inscrire paper-cv.vercel.app, soumettre le sitemap
 2. **IndexNow**: `npm run indexnow` après chaque déploiement qui change du contenu (clé cc7ab363c4a80c76f663895194866fe8, fichier déjà dans public/)
 3. **Domaine custom** (papercv.app ? papercv.io ?) puis mettre à jour `lib/site.ts`, `scripts/indexnow.mjs` (HOST), régénérer et redéployer
 4. **Cross-links**: ajouter PaperCV aux footers de undercap/graphmint/waveform

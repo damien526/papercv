@@ -482,7 +482,7 @@ export function ResumeDocument({ data }: { data: ResumeData }) {
     <Document
       title={`${data.basics.fullName || "Resume"} resume`}
       author={author}
-      creator="PaperCV (papercv.vercel.app)"
+      creator="PaperCV (paper-cv.vercel.app)"
       producer="PaperCV"
     >
       <Template data={data} t={t} />
