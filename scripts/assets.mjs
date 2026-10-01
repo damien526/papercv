@@ -2,18 +2,9 @@
 // Run manually: node scripts/assets.mjs
 import sharp from "sharp";
 import pngToIco from "png-to-ico";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
-const iconSvg = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#101217"/>
-  <rect x="16" y="12" width="32" height="40" rx="3" fill="#fbfaf6"/>
-  <rect x="21" y="19" width="16" height="4" rx="2" fill="#19191b"/>
-  <rect x="21" y="27" width="22" height="3" rx="1.5" fill="#9b9fae"/>
-  <rect x="21" y="33" width="22" height="3" rx="1.5" fill="#9b9fae"/>
-  <rect x="21" y="39" width="14" height="3" rx="1.5" fill="#9b9fae"/>
-  <circle cx="43" cy="46" r="5" fill="#4360f5"/>
-</svg>`;
+const iconSvg = readFileSync("app/icon.svg", "utf8");
 
 // A miniature resume sheet, drawn as vector shapes.
 function sheet(x, y, w, h, rot) {
