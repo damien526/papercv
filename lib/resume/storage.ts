@@ -54,3 +54,17 @@ export function importJson(text: string): ResumeData {
 export function exportJson(data: ResumeData): string {
   return JSON.stringify(data, null, 2);
 }
+
+export function isResumeEmpty(data: ResumeData | null): boolean {
+  if (!data) return true;
+  return (
+    !data.basics.fullName &&
+    !data.basics.email &&
+    data.sections.every((s) => {
+      if (s.kind === "summary") return !s.summary?.trim();
+      const arr =
+        s.experience ?? s.education ?? s.skills ?? s.projects ?? s.certifications ?? s.languages ?? s.custom;
+      return !arr || arr.length === 0;
+    })
+  );
+}

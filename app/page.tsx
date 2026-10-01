@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Nav from "@/components/site/Nav";
 import Footer from "@/components/site/Footer";
+import HeroCta from "@/components/site/HeroCta";
 import ResumeMock from "@/components/site/ResumeMock";
 import TemplateSketch from "@/components/site/TemplateSketch";
 import { TEMPLATES_META } from "@/lib/templates-meta";
@@ -106,17 +107,7 @@ export default function Home() {
             PaperCV doesn't do that. Write, pick a template, download the PDF. The whole thing runs in your browser,
             so your resume never even leaves your device.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Link
-              href="/builder"
-              className="rounded-xl bg-brand-500 px-7 py-3.5 text-[15.5px] font-semibold text-white shadow-[0_8px_28px_-8px_rgba(67,96,245,0.65)] transition hover:bg-brand-600"
-            >
-              Build my resume, free
-            </Link>
-            <Link href="/templates" className="text-[14.5px] font-semibold text-ink-500 underline decoration-paper-300 decoration-2 underline-offset-4 transition hover:text-ink-900">
-              See the templates
-            </Link>
-          </div>
+          <HeroCta />
           <ul className="mt-9 grid max-w-md gap-2.5 text-[13.5px] text-ink-500">
             <li className="flex gap-2.5"><Check /> Real PDF with selectable text, built for applicant tracking systems</li>
             <li className="flex gap-2.5"><Check /> Autosaves in your browser; export your data as JSON anytime</li>
@@ -124,7 +115,18 @@ export default function Home() {
           </ul>
         </div>
         <div className="mx-auto w-full max-w-md lg:max-w-none">
-          <ResumeMock />
+          <Link
+            href="/builder?example=1"
+            className="group relative block"
+            title="Open this example resume in the builder"
+          >
+            <div className="transition-transform duration-200 group-hover:-translate-y-1">
+              <ResumeMock />
+            </div>
+            <span className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-ink-900 px-4 py-2 text-[12.5px] font-semibold text-paper-50 opacity-0 shadow-lg transition group-hover:opacity-100">
+              Open this example in the builder →
+            </span>
+          </Link>
         </div>
       </section>
 

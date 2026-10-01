@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ResumeData, Section, SectionKind, uid } from "@/lib/resume/types";
 import { emptyResume, emptySection } from "@/lib/resume/defaults";
 import { SAMPLE_RESUME } from "@/lib/resume/sample";
-import { exportJson, importJson, loadResume, saveResume } from "@/lib/resume/storage";
+import { exportJson, importJson, isResumeEmpty, loadResume, saveResume } from "@/lib/resume/storage";
 import { downloadBlob, renderResumeBlob, resumeFilename } from "@/lib/pdf/render";
 import PdfPreview from "./preview/PdfPreview";
 import SectionEditor from "./editor/SectionEditor";
@@ -37,24 +37,34 @@ export default function Builder() {
   const renderGen = useRef(0);
   const fileInput = useRef<HTMLInputElement>(null);
 
-  // Load from localStorage on mount (client only).
+  // Load from localStorage on mount (client only). The landing can hand off
+  // ?example=1 (open with the sample resume) or ?name=... (open with the
+  // visitor's name pre-filled); both apply only when no draft exists yet,
+  // so a returning visitor's work is never overwritten.
   useEffect(() => {
     const stored = loadResume();
+    const params = new URLSearchParams(window.location.search);
+    const wantsExample = params.get("example") === "1";
+    const name = (params.get("name") ?? "").trim().slice(0, 80);
+    if (wantsExample || name) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+    if (isResumeEmpty(stored)) {
+      if (wantsExample) {
+        setData(structuredClone(SAMPLE_RESUME));
+        return;
+      }
+      if (name) {
+        const fresh = emptyResume();
+        fresh.basics.fullName = name;
+        setData(fresh);
+        return;
+      }
+    }
     setData(stored ?? emptyResume());
   }, []);
 
-  const isEmpty = useMemo(() => {
-    if (!data) return true;
-    return (
-      !data.basics.fullName &&
-      !data.basics.email &&
-      data.sections.every((s) => {
-        if (s.kind === "summary") return !s.summary?.trim();
-        const arr = s.experience ?? s.education ?? s.skills ?? s.projects ?? s.certifications ?? s.languages ?? s.custom;
-        return !arr || arr.length === 0;
-      })
-    );
-  }, [data]);
+  const isEmpty = useMemo(() => isResumeEmpty(data), [data]);
 
   // Autosave + debounced PDF render.
   useEffect(() => {
