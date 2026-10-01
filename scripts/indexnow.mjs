@@ -14,6 +14,7 @@ const urls = [
   "/free-resume-builder-no-sign-up",
   "/ats-friendly-resume",
   "/privacy",
+  "/terms",
 ].map((p) => `https://${HOST}${p}`);
 
 const res = await fetch("https://api.indexnow.org/indexnow", {

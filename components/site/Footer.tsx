@@ -24,6 +24,8 @@ export default function Footer() {
             <li><Link className="transition hover:text-ink-900" href="/ats-friendly-resume">ATS-friendly resumes</Link></li>
             <li><Link className="transition hover:text-ink-900" href="/free-resume-builder-no-sign-up">Why no sign-up</Link></li>
             <li><Link className="transition hover:text-ink-900" href="/privacy">Privacy</Link></li>
+            <li><Link className="transition hover:text-ink-900" href="/terms">Terms of use</Link></li>
+            <li><a className="transition hover:text-ink-900" href="mailto:damienyvert.dev@gmail.com">Contact</a></li>
           </ul>
         </div>
         <div className="text-[13.5px]">
@@ -36,7 +38,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-paper-200 py-5 text-center text-[12px] text-ink-400">
-        {SITE.name} · Free forever for the core builder · Built with care, no dark patterns
+        {SITE.name} · Published by Damien Yvert · Free forever for the core builder · Built with care, no dark patterns
       </div>
     </footer>
   );

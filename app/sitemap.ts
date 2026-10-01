@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/free-resume-builder-no-sign-up", priority: 0.7 },
     { path: "/ats-friendly-resume", priority: 0.7 },
     { path: "/privacy", priority: 0.3 },
+    { path: "/terms", priority: 0.3 },
   ];
   return pages.map((p) => ({
     url: `${SITE.url}${p.path}`,
