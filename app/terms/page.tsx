@@ -2,17 +2,34 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/site/Nav";
 import Footer from "@/components/site/Footer";
+import { contentPageGraph, jsonLdGraph } from "@/lib/jsonld";
+import { absoluteUrl } from "@/lib/site";
+
+const DESCRIPTION =
+  "The short, readable terms for using PaperCV: free, provided as is, your resume stays yours and stays on your device.";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
-  description:
-    "The short, readable terms for using PaperCV: the tool is free and provided as is, your resume stays yours and stays on your device, and no hiring outcome is guaranteed.",
-  alternates: { canonical: "/terms" },
+  description: DESCRIPTION,
+  alternates: { canonical: absoluteUrl("/terms") },
 };
 
 export default function TermsPage() {
   return (
     <div className="bg-paper-50 text-ink-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdGraph(
+            contentPageGraph({
+              path: "/terms",
+              name: "Terms of Use",
+              description: DESCRIPTION,
+              crumb: "Terms",
+            }),
+          ),
+        }}
+      />
       <Nav />
       <main className="mx-auto max-w-3xl px-5 py-16">
         <h1 className="font-display text-[clamp(32px,5vw,50px)] tracking-tight">Terms of use</h1>

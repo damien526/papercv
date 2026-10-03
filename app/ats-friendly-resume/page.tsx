@@ -2,12 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/site/Nav";
 import Footer from "@/components/site/Footer";
+import { contentPageGraph, jsonLdGraph } from "@/lib/jsonld";
+import { absoluteUrl } from "@/lib/site";
+
+const DESCRIPTION =
+  "A plain-English checklist of what applicant tracking systems can and cannot parse: layout, headings, fonts, file format.";
 
 export const metadata: Metadata = {
   title: "What Makes a Resume ATS-Friendly in 2026 (Checklist)",
-  description:
-    "A plain-English checklist of what applicant tracking systems can and cannot parse: layout, headings, fonts, file format. And how PaperCV templates comply by default.",
-  alternates: { canonical: "/ats-friendly-resume" },
+  description: DESCRIPTION,
+  alternates: { canonical: absoluteUrl("/ats-friendly-resume") },
 };
 
 const CHECKLIST = [
@@ -44,6 +48,19 @@ const CHECKLIST = [
 export default function AtsPage() {
   return (
     <div className="bg-paper-50 text-ink-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdGraph(
+            contentPageGraph({
+              path: "/ats-friendly-resume",
+              name: "What makes a resume ATS-friendly",
+              description: DESCRIPTION,
+              crumb: "ATS-friendly resume",
+            }),
+          ),
+        }}
+      />
       <Nav />
       <main className="mx-auto max-w-3xl px-5 py-16">
         <h1 className="font-display text-[clamp(32px,5vw,50px)] leading-[1.08] tracking-tight">

@@ -1,17 +1,34 @@
 import type { Metadata } from "next";
 import Nav from "@/components/site/Nav";
 import Footer from "@/components/site/Footer";
+import { contentPageGraph, jsonLdGraph } from "@/lib/jsonld";
+import { absoluteUrl } from "@/lib/site";
+
+const DESCRIPTION =
+  "PaperCV has no accounts, no resume uploads, and no server-side storage. Here is exactly what data exists, where it lives, how to delete it, and who to contact.";
 
 export const metadata: Metadata = {
   title: "Privacy: Your Resume Never Leaves Your Device",
-  description:
-    "PaperCV has no accounts, no resume uploads, and no server-side storage. Here is exactly what data exists, where it lives, how to delete it, and who to contact.",
-  alternates: { canonical: "/privacy" },
+  description: DESCRIPTION,
+  alternates: { canonical: absoluteUrl("/privacy") },
 };
 
 export default function PrivacyPage() {
   return (
     <div className="bg-paper-50 text-ink-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdGraph(
+            contentPageGraph({
+              path: "/privacy",
+              name: "Privacy",
+              description: DESCRIPTION,
+              crumb: "Privacy",
+            }),
+          ),
+        }}
+      />
       <Nav />
       <main className="mx-auto max-w-3xl px-5 py-16">
         <h1 className="font-display text-[clamp(32px,5vw,50px)] tracking-tight">Privacy, in plain words</h1>

@@ -4,17 +4,29 @@ import Nav from "@/components/site/Nav";
 import Footer from "@/components/site/Footer";
 import TemplateSketch from "@/components/site/TemplateSketch";
 import { TEMPLATES_META } from "@/lib/templates-meta";
+import { jsonLdGraph, templatesIndexGraph } from "@/lib/jsonld";
+import { absoluteUrl } from "@/lib/site";
+
+const DESCRIPTION =
+  "Four free resume templates: Clean, Compact, Executive, and Contrast. All ATS-friendly, all downloadable as PDF with no sign-up and no watermark.";
 
 export const metadata: Metadata = {
   title: "Free ATS-Friendly Resume Templates",
-  description:
-    "Four free resume templates: Clean, Compact, Executive, and Contrast. All ATS-friendly, all downloadable as PDF with no sign-up and no watermark.",
-  alternates: { canonical: "/templates" },
+  description: DESCRIPTION,
+  alternates: { canonical: absoluteUrl("/templates") },
 };
 
 export default function TemplatesPage() {
   return (
     <div className="bg-paper-50 text-ink-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdGraph(
+            templatesIndexGraph({ description: DESCRIPTION, templates: TEMPLATES_META }),
+          ),
+        }}
+      />
       <Nav />
       <main className="mx-auto max-w-6xl px-5 py-16">
         <h1 className="font-display text-[clamp(32px,5vw,52px)] tracking-tight">

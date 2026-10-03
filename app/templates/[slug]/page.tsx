@@ -5,6 +5,8 @@ import Nav from "@/components/site/Nav";
 import Footer from "@/components/site/Footer";
 import TemplateSketch from "@/components/site/TemplateSketch";
 import { TEMPLATES_META, templateMeta } from "@/lib/templates-meta";
+import { jsonLdGraph, templateGraph } from "@/lib/jsonld";
+import { absoluteUrl } from "@/lib/site";
 
 export function generateStaticParams() {
   return TEMPLATES_META.map((t) => ({ slug: t.id }));
@@ -15,9 +17,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const t = templateMeta(slug);
   if (!t) return {};
   return {
-    title: `${t.name} Resume Template: Free, ATS-Friendly, No Sign-Up`,
-    description: `${t.tagline}. Use the ${t.name} template free in the PaperCV builder and download your resume as a PDF with no account and no watermark.`,
-    alternates: { canonical: `/templates/${t.id}` },
+    // Shortened: with the "| PaperCV" suffix the old title ran to 63-67
+    // characters, past the width Google renders, and the four pages lost
+    // "No Sign-Up" — the part that differentiates them.
+    title: `${t.name} Resume Template: Free and ATS-Friendly`,
+    // Shortened from 174-187 characters, which Google truncated around 160.
+    description: `${t.tagline}. Free in the PaperCV builder, PDF download, no account.`,
+    alternates: { canonical: absoluteUrl(`/templates/${t.id}`) },
   };
 }
 
@@ -30,6 +36,19 @@ export default async function TemplatePage({ params }: { params: Promise<{ slug:
 
   return (
     <div className="bg-paper-50 text-ink-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdGraph(
+            templateGraph({
+              id: t.id,
+              name: t.name,
+              tagline: t.tagline,
+              description: t.description,
+            }),
+          ),
+        }}
+      />
       <Nav />
       <main className="mx-auto max-w-5xl px-5 py-16">
         <p className="text-[13px] font-medium text-ink-400">

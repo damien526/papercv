@@ -5,7 +5,7 @@ import HeroCta from "@/components/site/HeroCta";
 import ResumeMock from "@/components/site/ResumeMock";
 import TemplateSketch from "@/components/site/TemplateSketch";
 import { TEMPLATES_META } from "@/lib/templates-meta";
-import { SITE } from "@/lib/site";
+import { homeGraph, jsonLdGraph } from "@/lib/jsonld";
 
 const FAQ = [
   {
@@ -38,45 +38,20 @@ const FAQ = [
   },
 ];
 
-const JSON_LD = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      name: "PaperCV",
-      url: SITE.url,
-      applicationCategory: "BusinessApplication",
-      operatingSystem: "Any (runs in the browser)",
-      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-      description: SITE.description,
-      featureList: [
-        "Free resume builder with no sign-up",
-        "Four ATS-friendly resume templates",
-        "PDF download with no watermark",
-        "All data stays in your browser",
-        "A4 and US Letter page sizes",
-        "JSON export and import",
-      ],
-    },
-    {
-      "@type": "FAQPage",
-      mainEntity: FAQ.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    },
-    {
-      "@type": "HowTo",
-      name: "How to build a resume with PaperCV",
-      step: [
-        { "@type": "HowToStep", name: "Fill in your details", text: "Open the builder and type your experience, education, and skills. Everything autosaves in your browser." },
-        { "@type": "HowToStep", name: "Pick a template and style", text: "Choose one of four ATS-friendly templates, an accent color, typography, and paper size. The preview updates live." },
-        { "@type": "HowToStep", name: "Download your PDF", text: "Click Download PDF. The file is generated on your device, with real selectable text and no watermark." },
-      ],
-    },
-  ],
-};
+const STEPS = [
+  {
+    name: "Fill in your details",
+    text: "Open the builder and type your experience, education, and skills. Everything autosaves in your browser.",
+  },
+  {
+    name: "Pick a template and style",
+    text: "Choose one of four ATS-friendly templates, an accent color, typography, and paper size. The preview updates live.",
+  },
+  {
+    name: "Download your PDF",
+    text: "Click Download PDF. The file is generated on your device, with real selectable text and no watermark.",
+  },
+];
 
 function Check() {
   return (
@@ -89,7 +64,10 @@ function Check() {
 export default function Home() {
   return (
     <div className="bg-paper-50 text-ink-900">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdGraph(homeGraph({ faq: FAQ, steps: STEPS })) }}
+      />
       <Nav />
 
       {/* hero */}

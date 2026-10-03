@@ -2,17 +2,36 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/site/Nav";
 import Footer from "@/components/site/Footer";
+import { contentPageGraph, jsonLdGraph } from "@/lib/jsonld";
+import { absoluteUrl } from "@/lib/site";
+
+const DESCRIPTION =
+  "PaperCV is a resume builder with no sign-up, no email, no credit card, and no paywall at the download button. Build your resume and download the PDF in minutes.";
 
 export const metadata: Metadata = {
-  title: "Free Resume Builder With No Sign-Up (and No Paywall at Download)",
-  description:
-    "PaperCV is a resume builder with no sign-up, no email, no credit card, and no paywall at the download button. Build your resume and download the PDF in minutes.",
-  alternates: { canonical: "/free-resume-builder-no-sign-up" },
+  // 74 characters with the "| PaperCV" suffix, past the width Google renders.
+  // The paywall promise moves to the description, which has room for it.
+  title: "Free Resume Builder, No Sign-Up Required",
+  description: DESCRIPTION,
+  alternates: { canonical: absoluteUrl("/free-resume-builder-no-sign-up") },
 };
 
 export default function NoSignUpPage() {
   return (
     <div className="bg-paper-50 text-ink-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdGraph(
+            contentPageGraph({
+              path: "/free-resume-builder-no-sign-up",
+              name: "Free resume builder with no sign-up",
+              description: DESCRIPTION,
+              crumb: "No sign-up",
+            }),
+          ),
+        }}
+      />
       <Nav />
       <main className="mx-auto max-w-3xl px-5 py-16">
         <h1 className="font-display text-[clamp(32px,5vw,50px)] leading-[1.08] tracking-tight">
