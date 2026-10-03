@@ -32,7 +32,7 @@ export default function PrivacyPage() {
       <Nav />
       <main className="mx-auto max-w-3xl px-5 py-16">
         <h1 className="font-display text-[clamp(32px,5vw,50px)] tracking-tight">Privacy, in plain words</h1>
-        <p className="mt-3 text-[13px] text-ink-400">Last updated: October 1, 2026</p>
+        <p className="mt-3 text-[13px] text-ink-400">Last updated: October 3, 2026</p>
         <div className="mt-7 space-y-8 text-[15px] leading-relaxed text-ink-600">
           <p>
             A resume contains your full name, phone number, address area, employment history, and often hints about
@@ -61,9 +61,11 @@ export default function PrivacyPage() {
               PaperCV sets no cookies. The only browser storage used is the local storage entry that holds your
               resume draft, which is strictly necessary for the tool to work and stays on your device. There are no
               advertising trackers, no social pixels, no fingerprinting, and no third-party scripts: every file the
-              site loads (fonts included) is served from this domain. As of the date above, no analytics are active.
-              If privacy-respecting page analytics are enabled later, they will be cookieless and aggregate only
-              (page views and country level), will never see resume content, and this page will be updated first.
+              site loads (fonts included) is served from this domain. Page analytics are active: Vercel Web
+              Analytics, which is cookieless, sets no identifier, and reports aggregates only (page views, country,
+              device type, browser). It never sees your resume content. The address of the page you view is recorded
+              without its query string, which is stripped in your own browser before anything is sent, so a name
+              passed in a link like "/builder?name=..." is never transmitted.
             </p>
           </section>
 

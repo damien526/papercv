@@ -17,7 +17,7 @@ Créé le 01/10/2026. 6e webtool du portefeuille (waveform, finance-sim, kiturge
 2. **IndexNow**: `npm run indexnow` après chaque déploiement qui change du contenu (clé cc7ab363c4a80c76f663895194866fe8, fichier déjà dans public/)
 3. **Domaine custom** (papercv.app ? papercv.io ?) puis mettre à jour `lib/site.ts`, `scripts/indexnow.mjs` (HOST), régénérer et redéployer
 4. **Cross-links**: ajouter PaperCV aux footers de undercap/graphmint/waveform
-5. **Analytics**: activer Vercel Analytics (regarder les referrers avant toute conclusion, cf. leçon simulateur-epargne)
+5. ~~**Analytics**~~: fait le 03/10/2026 (toggle Vercel activé + `components/Analytics.tsx`). Regarder les referrers avant toute conclusion, cf. leçon simulateur-epargne
 6. Monétisation plus tard (modèle annoncé sur la landing: extras optionnels, jamais de paywall au download). Pistes: templates premium, cover letters, réécriture IA des bullets
 7. Idées produit v2: multi-CV, import PDF/LinkedIn, cover letter builder, pages SEO par métier ("software engineer resume template" etc.). Le mécanisme de handoff existe déjà: `/builder?example=1` charge l'exemple, `/builder?name=X` pré-remplit le nom (hero de la landing: champ nom optionnel dans le CTA, maquette cliquable). Les deux ne s'appliquent QUE si aucun brouillon n'existe en localStorage; le param est retiré de l'URL après lecture. Pour les pages métier, étendre ce pattern (ex. `?example=software-engineer`).
 
@@ -28,7 +28,7 @@ Créé le 01/10/2026. 6e webtool du portefeuille (waveform, finance-sim, kiturge
 - /terms créée (as-is, contenu à l'utilisateur, pas de garantie d'embauche, usage acceptable, responsabilité).
 - /.well-known/security.txt (Expires 2027-10-01: à renouveler avant cette date).
 - Footer: liens Terms + Contact (mailto), mention « Published by Damien Yvert ».
-- Si des analytics sont ajoutées un jour: mettre à jour /privacy D'ABORD (elle promet « none active » + cookieless/aggregate), et élargir connect-src de la CSP si besoin.
+- Analytics (03/10/2026): Vercel Web Analytics activé. /privacy et public/llms.txt mis à jour en même temps. La CSP n'a PAS bougé: le script et les events sont servis depuis `/_vercel/insights/*`, donc `'self'` suffit pour script-src et connect-src. `components/Analytics.tsx` coupe la query string via `beforeSend` — indispensable, car `/builder?name=...` porte le nom du visiteur et /privacy promet qu'il n'est envoyé nulle part. Ne pas retirer ce garde-fou sans reprendre /privacy et llms.txt.
 
 ## Pièges connus
 

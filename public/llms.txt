@@ -33,4 +33,4 @@ Key pages:
 - https://www.papercv.app/privacy : exactly what data exists and where
 - https://www.papercv.app/terms : short, readable terms of use
 
-Publisher: Damien Yvert. Contact (including security reports): damienyvert.dev@gmail.com (also in /.well-known/security.txt). No cookies, no analytics active as of 2026-10-01, no third-party scripts; strict Content-Security-Policy served on every page.
+Publisher: Damien Yvert. Contact (including security reports): damienyvert.dev@gmail.com (also in /.well-known/security.txt). No cookies, no third-party scripts; strict Content-Security-Policy served on every page. Page analytics are cookieless and aggregate only (Vercel Web Analytics, served from this domain), and URLs are recorded without their query string.
