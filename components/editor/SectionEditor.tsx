@@ -185,7 +185,7 @@ export default function SectionEditor({
               onRemove={() => set(items.filter((x) => x.id !== p.id))}
             >
               <div className="grid grid-cols-2 gap-2.5">
-                <Field label="Project name" value={p.name} onChange={(v) => set(items.map((x) => (x.id === p.id ? { ...x, name: v } : x)))} placeholder="Undercap" />
+                <Field label="Project name" value={p.name} onChange={(v) => set(items.map((x) => (x.id === p.id ? { ...x, name: v } : x)))} placeholder="SqueezeVid" />
                 <Field label="Link" value={p.link} onChange={(v) => set(items.map((x) => (x.id === p.id ? { ...x, link: v } : x)))} placeholder="github.com/you/project" />
               </div>
               <div className="mt-2.5 grid gap-2.5">

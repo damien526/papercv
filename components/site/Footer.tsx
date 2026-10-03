@@ -31,9 +31,9 @@ export default function Footer() {
         <div className="text-[13.5px]">
           <div className="mb-3 font-semibold text-ink-900">More free tools</div>
           <ul className="space-y-2 text-ink-500">
-            <li><a className="transition hover:text-ink-900" href="https://undercap.vercel.app" rel="noopener">Undercap: compress video to a target size</a></li>
-            <li><a className="transition hover:text-ink-900" href="https://graphmint.vercel.app" rel="noopener">Graphmint: make charts online</a></li>
-            <li><a className="transition hover:text-ink-900" href="https://music-waveform.com" rel="noopener">Waveform: audio visualizer</a></li>
+            <li><a className="transition hover:text-ink-900" href="https://www.squeezevid.app" rel="noopener">SqueezeVid: compress video to a target size</a></li>
+            <li><a className="transition hover:text-ink-900" href="https://www.graphmint.app" rel="noopener">Graphmint: make charts online</a></li>
+            <li><a className="transition hover:text-ink-900" href="https://www.music-waveform.com" rel="noopener">Waveform: audio visualizer</a></li>
           </ul>
         </div>
       </div>

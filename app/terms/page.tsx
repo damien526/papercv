@@ -19,7 +19,7 @@ export default function TermsPage() {
         <p className="mt-3 text-[13px] text-ink-400">Last updated: October 1, 2026</p>
         <div className="mt-7 space-y-8 text-[15px] leading-relaxed text-ink-600">
           <p>
-            These terms are deliberately short and written to be read. By using PaperCV (paper-cv.vercel.app) you
+            These terms are deliberately short and written to be read. By using PaperCV (papercv.app) you
             agree to them.
           </p>
 
