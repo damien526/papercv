@@ -61,7 +61,12 @@ export default async function TemplatePage({ params }: { params: Promise<{ slug:
             </div>
           </div>
           <div>
-            <h1 className="font-display text-[clamp(32px,5vw,48px)] tracking-tight">The {t.name} template</h1>
+            {/* "resume" belongs in the h1: the title targets "Clean Resume
+                Template" and the only level-one heading on the page used to
+                say "The Clean template". */}
+            <h1 className="font-display text-[clamp(32px,5vw,48px)] tracking-tight">
+              The {t.name} resume template
+            </h1>
             <p className="mt-2 text-[15px] font-medium text-brand-600">{t.tagline}</p>
             <p className="mt-5 text-[15px] leading-relaxed text-ink-500">{t.description}</p>
             <ul className="mt-6 space-y-2.5">
@@ -92,6 +97,76 @@ export default async function TemplatePage({ params }: { params: Promise<{ slug:
             </p>
           </div>
         </div>
+
+        <section className="mt-20 max-w-3xl">
+          <h2 className="font-display text-[26px] tracking-tight">{t.layout.title}</h2>
+          <div className="mt-5 space-y-4">
+            {t.layout.body.map((p, i) => (
+              <p key={i} className="text-[15px] leading-relaxed text-ink-500">
+                {p}
+              </p>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-16 max-w-3xl">
+          <h2 className="font-display text-[26px] tracking-tight">
+            What an applicant tracking system sees
+          </h2>
+          <ul className="mt-5 space-y-3">
+            {t.ats.map((line) => (
+              <li key={line} className="flex gap-2.5 text-[14.5px] leading-relaxed text-ink-500">
+                <svg
+                  className="mt-[5px] shrink-0 text-brand-500"
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                {line}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 text-[14px] leading-relaxed text-ink-400">
+            The full list of what parsers can and cannot read is on{" "}
+            <Link
+              href="/ats-friendly-resume"
+              className="font-semibold text-ink-500 underline decoration-paper-300 decoration-2 underline-offset-4 hover:text-ink-900"
+            >
+              what makes a resume ATS-friendly
+            </Link>
+            .
+          </p>
+        </section>
+
+        <section className="mt-16 max-w-3xl">
+          <h2 className="font-display text-[26px] tracking-tight">
+            When to pick a different template
+          </h2>
+          <ul className="mt-5 space-y-3">
+            {t.insteadOf.map((alt) => {
+              const other = templateMeta(alt.id);
+              if (!other) return null;
+              return (
+                <li key={alt.id} className="text-[15px] leading-relaxed text-ink-500">
+                  <Link
+                    href={`/templates/${other.id}`}
+                    className="font-semibold text-ink-900 underline decoration-paper-300 decoration-2 underline-offset-4 hover:text-brand-600"
+                  >
+                    The {other.name} resume template
+                  </Link>{" "}
+                  if {alt.when}.
+                </li>
+              );
+            })}
+          </ul>
+        </section>
 
         <section className="mt-20">
           <h2 className="font-display text-[26px] tracking-tight">Other templates</h2>

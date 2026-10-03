@@ -30,7 +30,7 @@ export default function TemplatesPage() {
       <Nav />
       <main className="mx-auto max-w-6xl px-5 py-16">
         <h1 className="font-display text-[clamp(32px,5vw,52px)] tracking-tight">
-          Templates that respect the reader
+          Resume templates that respect the reader
         </h1>
         <p className="mt-4 max-w-2xl text-[15.5px] leading-relaxed text-ink-500">
           A resume template has one job: make your experience effortless to read, for a human in six seconds and for

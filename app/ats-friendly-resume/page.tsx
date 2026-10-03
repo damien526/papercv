@@ -100,6 +100,25 @@ export default function AtsPage() {
             a linear reading order (including the two-column Compact template), conventional date formatting,
             embedded text fonts, and PDF output. You focus on the content; the format is already right.
           </p>
+          <p className="mt-3 text-[14.5px] leading-relaxed text-ink-500">
+            If you want the shortest path to a parseable document, the{" "}
+            <Link
+              href="/templates/clean"
+              className="font-semibold text-ink-900 underline decoration-paper-300 decoration-2 underline-offset-4 hover:text-brand-600"
+            >
+              Clean resume template
+            </Link>{" "}
+            is one column with nothing between the parser and your experience. If the checklist above has you
+            cutting content to fit one page, the{" "}
+            <Link
+              href="/templates/compact"
+              className="font-semibold text-ink-900 underline decoration-paper-300 decoration-2 underline-offset-4 hover:text-brand-600"
+            >
+              Compact resume template
+            </Link>{" "}
+            moves your skills and education into a sidebar instead, and explains there what an ATS makes of the
+            two columns.
+          </p>
           <Link
             href="/builder"
             className="mt-5 inline-block rounded-xl bg-brand-500 px-6 py-3 text-[14.5px] font-semibold text-white transition hover:bg-brand-600"
