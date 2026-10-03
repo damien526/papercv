@@ -33,6 +33,7 @@ export default function Footer() {
           <ul className="space-y-2 text-ink-500">
             <li><a className="transition hover:text-ink-900" href="https://www.squeezevid.app" rel="noopener">SqueezeVid: compress video to a target size</a></li>
             <li><a className="transition hover:text-ink-900" href="https://www.graphmint.app" rel="noopener">Graphmint: make charts online</a></li>
+            <li><a className="transition hover:text-ink-900" href="https://www.onlinecull.com" rel="noopener">OnlineCull: cull photos in your browser</a></li>
             <li><a className="transition hover:text-ink-900" href="https://www.music-waveform.com" rel="noopener">Waveform: audio visualizer</a></li>
           </ul>
         </div>
